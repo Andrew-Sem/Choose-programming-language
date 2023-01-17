@@ -1,11 +1,19 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 
 interface ResultProps{
     selectedLang: string
     resetHandler: () => void
+    setQuestionAnswerChain: (chain: Array<string>) => void
+    questionAnswerChain: Array<string>
 }
 
-export const Result: FC<ResultProps> = ({ resetHandler, selectedLang}) => {
+export const Result: FC<ResultProps> = ({ resetHandler, selectedLang, questionAnswerChain, setQuestionAnswerChain}) => {
+    useEffect(() => {
+        console.log(questionAnswerChain)
+        return () => {
+            setQuestionAnswerChain([])
+        }
+    }, [])
     return (
         <div className={"flex flex-col items-center w-76 bg-gradient-to-r from-cyan-600 to-blue-600 px-6 py-12 rounded-xl"}>
             <div>Поздравляю, подходящий Вам язык: {selectedLang}</div>
